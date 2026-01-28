@@ -39,7 +39,7 @@ export default function App() {
       formData.append("companyName", companyName);
       formData.append("jobDescription", jobDescription);
 
-      const res = await fetch(import.meta.env.API_KEY, {
+      const res = await fetch(`${import.meta.API_KEY}/resume/analyze`, {
         method: "POST",
         body: formData,
       });
