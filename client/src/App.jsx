@@ -54,6 +54,15 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+  if (analysisResult) {
+    document
+      .getElementById("result-section")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }
+}, [analysisResult]);
+
+
   return (
     <>
       {/* HEADER */}
@@ -67,10 +76,10 @@ export default function App() {
       </div>
 
       {/* MAIN */}
-      <div className="pt-16 min-h-screen bg-linear-to-br from-[#09185a] via-[#2e023e] to-black text-gray-200 overflow-hidden">
-        <div className="flex h-full gap-8 px-6">
+      <div className="pt-16 min-h-screen bg-linear-to-br from-[#09185a] via-[#2e023e] to-black text-gray-200 overflow-y-auto">
+        <div className="flex flex-col lg:flex-row h-full gap-6 px-4 lg:px-6">
           {/* LEFT PANEL */}
-          <div className="w-[38%] backdrop-blur-lg bg-white/5 border border-white/10 rounded-xl p-8 overflow-y-auto">
+          <div className="w-full lg:w-[38%] backdrop-blur-lg bg-white/5 border border-white/10 rounded-xl p-8 overflow-visible">
             <div className="space-y-6">
               <div>
                 <label className="block mb-2 text-xs tracking-widest text-gray-400 uppercase">
@@ -152,11 +161,11 @@ export default function App() {
           </div>
 
           {/* RIGHT PANEL */}
-    <div className="w-[62%] backdrop-blur-lg bg-white/5 border border-white/10 rounded-xl p-10 overflow-y-auto">
+    <div id="result-section" className="w-full lg:w-[62%] backdrop-blur-lg bg-white/5 border border-white/10 rounded-xl p-6 lg:p-10 overflow-visible">
 
   {/* SKELETON LOADER (highest priority) */}
   {isAnalyzing && (
-    <div className="space-y-6 animate-pulse">
+    <div className="space-y-6 animate-pulse min-h-300px">
       <div className="h-20 rounded-lg bg-white/10"></div>
       <div className="h-24 rounded-lg bg-white/10"></div>
       <div className="h-32 rounded-lg bg-white/10"></div>
@@ -258,7 +267,7 @@ export default function App() {
 
   {/* PLACEHOLDER */}
   {!isAnalyzing && !analysisResult && (
-    <div className="flex flex-col items-center justify-center h-full text-center text-gray-500">
+    <div className="flex flex-col items-center justify-center min-h-300px text-center text-gray-500">
       <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mb-4">
         🔍
       </div>

@@ -4,9 +4,9 @@ body {
   font-family: 'Space Grotesk', sans-serif;
 }
 
-html {
+/* html {
     font-size: var(--font-size);
-  }
+  } */
 
   h2 {
     font-size: var(--text-xl);
