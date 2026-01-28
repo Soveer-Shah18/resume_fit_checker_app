@@ -29,7 +29,6 @@ const analyzeResume = async (req,res)=>{
             });
           }
         
-          console.error("Gemini error:", err);
           return res.status(500).json({
             message: "AI analysis failed",
           });
