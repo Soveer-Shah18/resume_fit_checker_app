@@ -13,16 +13,35 @@ const analyzeResume = async (req,res)=>{
             })
         }
         const resumeText = await extractTextFromPDF(req.file.buffer);
-        const rawgeminiReply = await geminiAnalyzer({resumeText,companyName,jobDescription});
+
+        let rawGeminiReply;
+        try {
+          rawGeminiReply = await geminiAnalyzer({
+            resumeText,
+            companyName,
+            jobDescription,
+          });
+        } catch (err) {
+          if (err?.error?.code === 429) {
+            return res.status(429).json({
+              message: "AI usage limit reached",
+              error: "Please try again later",
+            });
+          }
+        
+          console.error("Gemini error:", err);
+          return res.status(500).json({
+            message: "AI analysis failed",
+          });
+        }
 
         let parsedReply;
-
         try{
-            parsedReply = JSON.parse(rawgeminiReply)
+            parsedReply = JSON.parse(rawGeminiReply)
         }
         catch(err){
             res.status(500).json({
-                message: "Gemini could not Respond"
+                message: "Invalid response from AI"
             })
         }
 
