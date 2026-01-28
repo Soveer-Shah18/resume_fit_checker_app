@@ -165,7 +165,7 @@ export default function App() {
 
   {/* SKELETON LOADER (highest priority) */}
   {isAnalyzing && (
-    <div className="space-y-6 animate-pulse min-h-300px">
+    <div className="space-y-6 animate-pulse min-h-75">
       <div className="h-20 rounded-lg bg-white/10"></div>
       <div className="h-24 rounded-lg bg-white/10"></div>
       <div className="h-32 rounded-lg bg-white/10"></div>
@@ -267,7 +267,7 @@ export default function App() {
 
   {/* PLACEHOLDER */}
   {!isAnalyzing && !analysisResult && (
-    <div className="flex flex-col items-center justify-center min-h-300px text-center text-gray-500">
+    <div className="flex flex-col items-center justify-center min-h-75 text-center text-gray-500">
       <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mb-4">
         🔍
       </div>
