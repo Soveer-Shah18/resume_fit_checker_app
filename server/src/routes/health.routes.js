@@ -4,4 +4,4 @@ const healthController = require('../controllers/health.controller')
 
 healthRoute.get('/', healthController);
 
-module.exports = healthRoute
+module.exports = healthRoute;
